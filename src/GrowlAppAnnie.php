@@ -13,7 +13,6 @@
  */
 class GrowlAppAnnie
 {
-    //protected $apiKey = 'df8f28f6436f6065e731423df2aaf09d203b4ada';
     protected $apiKey;
     protected $apiUrl = 'https://api.appannie.com';
 
