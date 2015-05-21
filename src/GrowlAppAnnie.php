@@ -189,9 +189,11 @@ class GrowlAppAnnie
      * @param array $postParams
      * @return array
      */
-    protected function sendRequest($method, $url, $postParams = array())
+    protected function sendRequest($method, $url, $postParams = array(), $verbose = false)
     {
-        echo "$url\n";
+        if ($verbose) {
+            echo "$url\n";
+        }
         $header = $this->buildRequestHeader();
 
         $options = array(
