@@ -15,10 +15,14 @@ class GrowlAppAnnie
 {
     protected $apiKey;
     protected $apiUrl = 'https://api.appannie.com';
+    protected $verbose;
+    protected $curlTimeout;
 
-    public function __construct($apiKey)
+    public function __construct($apiKey, $verbose = false, $curlTimeout = 10)
     {
         $this->apiKey = $apiKey;
+        $this->verbose = $verbose;
+        $this->curlTimeout = $curlTimeout;
     }
 
     /**
@@ -189,9 +193,9 @@ class GrowlAppAnnie
      * @param array $postParams
      * @return array
      */
-    protected function sendRequest($method, $url, $postParams = array(), $verbose = false)
+    protected function sendRequest($method, $url, $postParams = array())
     {
-        if ($verbose) {
+        if ($this->verbose) {
             echo "$url\n";
         }
         $header = $this->buildRequestHeader();
@@ -202,6 +206,7 @@ class GrowlAppAnnie
             CURLOPT_HTTPHEADER => $header,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_CONNECTTIMEOUT => $this->curlTimeout,
             //CURLOPT_VERBOSE => true
         );
 
